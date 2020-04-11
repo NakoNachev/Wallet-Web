@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>controllers.LoginServlet</servlet-class>
+        
+        <init-param>            
+            <param-name>dbName</param-name>
+            <param-value>wallet_web</param-value>           
+        </init-param>
+        
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>controllers.RegisterServlet</servlet-class>       
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/Login.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/RegisterServlet</url-pattern>
+    </servlet-mapping>
+    
+    <context-param>
+        <param-name>dbName </param-name>
+        <param-value>wallet_web</param-value>
+    </context-param>
+    
+    <context-param>    
+        <param-name>dbUser </param-name>
+        <param-value>root</param-value>
+    </context-param>
+    
+    <context-param>    
+        <param-name>dbPassword </param-name>
+        <param-value>CA2203MX</param-value>
+    </context-param>
+    
+    <context-param>    
+        <param-name>dbConnection</param-name>
+        <param-value>jdbc:mysql://localhost:3306/</param-value>       
+    </context-param>
+    
+    <welcome-file-list>
+        
+        <welcome-file> main.html</welcome-file>
+        
+    </welcome-file-list>
+   
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
