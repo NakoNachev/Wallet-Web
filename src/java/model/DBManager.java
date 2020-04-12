@@ -8,30 +8,43 @@ package model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
  * Class for establishing connection to the database
  */
-public class Connector {
+public class DBManager {
     
     private String dbName;
     private String dbUser;
     private String dbPassword;
     private String dbURL;
+    private Connection con;
     
     
-    public Connector(String dbName, String dbUser, String dbPassword, String dbURL) {
+    public DBManager(String dbName, String dbUser, String dbPassword, String dbURL) throws ClassNotFoundException {
         this.dbName = dbName;
         this.dbUser = dbUser;
         this.dbPassword = dbPassword;
         this.dbURL = dbURL;
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            this.con = DriverManager.getConnection(this.dbURL+this.dbName,this.dbUser,this.dbPassword);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
     }
     
     public Connection getConnection() throws SQLException {
-        Connection con = null;
-        con = DriverManager.getConnection(this.dbURL+this.dbName,this.dbUser,this.dbPassword);
-        return con;
+        return this.con;
+    }
+    
+    public void closeConnection(){
+        
     }
     
 }

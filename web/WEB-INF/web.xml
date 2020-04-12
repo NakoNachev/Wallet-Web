@@ -3,12 +3,7 @@
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>controllers.LoginServlet</servlet-class>
-        
-        <init-param>            
-            <param-name>dbName</param-name>
-            <param-value>wallet_web</param-value>           
-        </init-param>
-        
+ 
     </servlet>
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
@@ -39,9 +34,15 @@
     </context-param>
     
     <context-param>    
-        <param-name>dbConnection</param-name>
+        <param-name>dbURL</param-name>
         <param-value>jdbc:mysql://localhost:3306/</param-value>       
     </context-param>
+    
+    <listener>
+        <listener-class>
+            listeners.DBListener
+        </listener-class>
+    </listener>
     
     <welcome-file-list>
         
