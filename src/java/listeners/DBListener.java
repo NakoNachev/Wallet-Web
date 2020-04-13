@@ -5,14 +5,13 @@
  */
 package listeners;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import model.DBManager;
+import model.db.DBManager;
 
 /**
  *

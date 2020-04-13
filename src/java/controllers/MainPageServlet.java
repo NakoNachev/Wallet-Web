@@ -3,28 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.db.DBManager;
 
+/**
+ *
+ * @author Asus
+ */
+@WebServlet(name = "MainPageServlet", urlPatterns = {"/MainPageServlet"})
+public class MainPageServlet extends HttpServlet {
 
-@WebServlet(name = "DBListenerTest", urlPatterns = {"/DBListenerTest"})
-public class DBListenerTest extends HttpServlet {
+    
 
-
-
-   
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -36,16 +34,26 @@ public class DBListenerTest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
+        
+        response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("Testing DBConnection");
-        DBManager dbManager = (DBManager)request.getServletContext().getAttribute("dbManager");
+        String name = request.getParameter("username");
         try {
-            Connection con = (Connection)dbManager.getConnection();
-            out.println(con);
-        } catch (SQLException ex) {
-            Logger.getLogger(DBListenerTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>User Error</title>");
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Welcome " + name + "</h1>");
+                out.println("</body>");
+                out.println("</html>");
+            } finally {
+                out.close();
+            }
+            
+            
+        
     }
 
     /**
@@ -59,6 +67,7 @@ public class DBListenerTest extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        doGet(request,response);
     }
 
     /**

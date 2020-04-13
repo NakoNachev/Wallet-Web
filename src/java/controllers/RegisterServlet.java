@@ -46,6 +46,7 @@ public class RegisterServlet extends HttpServlet {
         PrintWriter writer = response.getWriter();
         
         // getServletConfig().getInitParameter("paramName..")
+        // use RequestDispatcher when registration complete
         
         
         
