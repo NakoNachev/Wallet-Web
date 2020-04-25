@@ -6,6 +6,7 @@
 package listeners;
 
 
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
@@ -48,7 +49,11 @@ public class DBListener implements ServletContextListener {
         
         ServletContext ctx = sce.getServletContext();
         DBManager dbManager = (DBManager)ctx.getAttribute("dbManager");
-        dbManager.closeConnection();
+        try {
+            dbManager.closeConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBListener.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("Database connection for Application has been closed");
     }
     

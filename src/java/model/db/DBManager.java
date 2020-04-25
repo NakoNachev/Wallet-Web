@@ -30,7 +30,7 @@ public class DBManager {
         this.dbURL = dbURL;
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             this.con = DriverManager.getConnection(this.dbURL+this.dbName,this.dbUser,this.dbPassword);
         }
         catch (SQLException e){
@@ -42,8 +42,8 @@ public class DBManager {
         return this.con;
     }
     
-    public void closeConnection(){
-        
+    public void closeConnection() throws SQLException{
+       this.con.close();
     }
     
 }

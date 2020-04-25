@@ -67,13 +67,18 @@ public class LoginServlet extends HttpServlet {
             }
  
         }   catch (SQLException ex) {
+            ex.getStackTrace();
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
        
     }
        
        if (foundUser) {
            
-           RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/MainPageServlet");
+           //if user is to be found in database, dispatch to the user home jsp 
+           
+           //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/MainPageServlet");
+           RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/user-home.jsp");
+           
            dispatcher.forward(request, response);
            
            
